@@ -1,0 +1,10 @@
+{
+  "rules": [
+    {
+      "id": "default_allow",
+      "action": "allow",
+      "priority": 100,
+      "comment": "Default allow rule"
+    }
+  ]
+}
