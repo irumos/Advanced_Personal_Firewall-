@@ -1,0 +1,4 @@
+Example commands:
+sudo python3 src/personal_firewall_full.py --backend none --rules config/rules.json
+sudo python3 src/personal_firewall_full.py --backend nft --rules config/rules.json
+python3 src/personal_firewall_full.py --simulate examples/sample.pcap --rules config/rules.json

@@ -1,0 +1,13 @@
+{
+  "rules": [
+    {
+      "id": "sample_block_ssh",
+      "action": "block",
+      "priority": 50,
+      "dst_port": 22,
+      "protocol": "tcp",
+      "direction": "in",
+      "comment": "Example: block incoming SSH"
+    }
+  ]
+}
