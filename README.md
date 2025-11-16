@@ -163,16 +163,3 @@ python3 personal_firewall_full.py --help-usage
 ```
 
 ---
-
-## Project Ready for GitHub
-
-This README includes:
-- Normal execution
-- GUI mode
-- Real firewall mode
-- Simulation mode
-- REST API usage
-- **Daemon (systemd) mode**
-- Full commands and instructions
-
-
