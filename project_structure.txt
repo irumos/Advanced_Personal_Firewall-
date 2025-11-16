@@ -1,0 +1,16 @@
+Project Folder Structure
+-------------------------
+
+firewall_project/
+│
+├── personal_firewall_full.py
+├── rules.json
+├── README.md
+├── .gitignore
+├── pfw.log
+├── pfw_logs.db
+├── pfw_alert_capture.pcap
+│
+├── rules_backups/
+├── gui_assets/
+└── docs/
