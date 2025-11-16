@@ -52,3 +52,127 @@ For detailed usage:
 python3 personal_firewall_full.py --help
 python3 personal_firewall_full.py --help-usage
 ```
+# Running as a Systemd Daemon (Firewall Service)
+
+Follow these steps to run the firewall automatically at system startup.
+
+---
+
+## 1. Move the firewall to a fixed location
+```bash
+sudo mkdir -p /opt/pfw
+sudo cp personal_firewall_full.py /opt/pfw/
+sudo cp rules.json /opt/pfw/
+```
+
+---
+
+## 2. Create a systemd service file  
+Create file:
+```bash
+sudo nano /etc/systemd/system/pfw.service
+```
+
+Paste this:
+```
+[Unit]
+Description=Python Personal Firewall Service
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/python3 /opt/pfw/personal_firewall_full.py --backend nft --rules /opt/pfw/rules.json --no-gui
+Restart=on-failure
+WorkingDirectory=/opt/pfw
+User=root
+
+[Install]
+WantedBy=multi-user.target
+```
+
+---
+
+## 3. Reload systemd and enable service
+```bash
+sudo systemctl daemon-reload
+sudo systemctl enable pfw
+sudo systemctl start pfw
+```
+
+---
+
+## 4. Check firewall logs
+```bash
+sudo journalctl -u pfw -f
+```
+
+---
+
+## 5. Stop or disable the firewall
+```bash
+sudo systemctl stop pfw
+sudo systemctl disable pfw
+```
+
+---
+
+## 6. Edit the service configuration
+```bash
+sudo nano /etc/systemd/system/pfw.service
+sudo systemctl daemon-reload
+sudo systemctl restart pfw
+```
+
+---
+
+## 7. Recommended: Create a dedicated log directory
+```bash
+sudo mkdir -p /var/log/pfw
+sudo chmod 777 /var/log/pfw
+```
+
+You may edit `pfw.service` to redirect logs there.
+
+---
+
+# Simulation Mode
+Test firewall rules without live traffic:
+
+```bash
+python3 personal_firewall_full.py --simulate sample.pcap --rules rules.json
+```
+
+---
+
+# REST API Mode
+Start API:
+```bash
+python3 personal_firewall_full.py --api
+```
+
+List rules:
+```bash
+curl http://127.0.0.1:8080/rules
+```
+
+---
+
+# Help Commands
+```bash
+python3 personal_firewall_full.py --help
+python3 personal_firewall_full.py --help-usage
+```
+
+---
+
+## Project Ready for GitHub
+
+This README includes:
+- Normal execution
+- GUI mode
+- Real firewall mode
+- Simulation mode
+- REST API usage
+- **Daemon (systemd) mode**
+- Full commands and instructions
+
+
